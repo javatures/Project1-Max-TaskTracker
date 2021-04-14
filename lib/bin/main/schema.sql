@@ -9,7 +9,8 @@ create table users (
     userName varchar(255) unique not null,
     userPassword varchar(255) not null,
     fname varchar(255),
-    lname varchar(255)
+    lname varchar(255), 
+    manager int
 );
 
 create table tasks (
@@ -19,7 +20,7 @@ create table tasks (
     title text not null,
     body text not null,
     currentStatus integer not null,
-    evidence bytea
+    evidenceLocation text
 );
 
 INSERT INTO userTypes(typeName) VALUES ('manager'), ('employee');
