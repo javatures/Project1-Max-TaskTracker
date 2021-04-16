@@ -8,7 +8,12 @@ import java.sql.Statement;
 
 public class UserDao 
 {
-    private Connection connection = SqlConnection.getInstance().getConnection();
+    private Connection connection;
+
+    public UserDao()
+    {
+        connection = SqlConnection.getInstance().getConnection();
+    }
 
     public void insert(User user)
     {
@@ -35,7 +40,36 @@ public class UserDao
         }
     }
 
-    public User findUser(String userName)
+    public User validateLogin(String userName, String password)
+    {
+        User foundUser = null;
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("select * from users where userName = ? and userPassword = ?;");
+
+            pStatement.setString(1, userName);
+            pStatement.setString(2, password);
+
+            ResultSet rSet = pStatement.executeQuery();
+            rSet.next();
+            int userId = rSet.getInt("userId");
+            int userType = rSet.getInt("userType");
+            String uName = rSet.getString("userName");
+            String userPassword = rSet.getString("userPassword");
+            String fname = rSet.getString("fname");
+            String lname = rSet.getString("lname");
+            int manager = rSet.getInt("manager");
+
+            foundUser = new User(userId, userType, uName, userPassword, fname, lname, manager);
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return foundUser;
+    }
+
+    public User findUserByName(String userName)
     {
         User foundUser = null;
         try 
@@ -55,6 +89,34 @@ public class UserDao
             int manager = rSet.getInt("manager");
 
             foundUser = new User(userId, userType, uName, userPassword, fname, lname, manager);
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return foundUser;
+    }
+
+    public User findUserById(int userId)
+    {
+        User foundUser = null;
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("select * from users where userId = ?;");
+
+            pStatement.setInt(1, userId);
+
+            ResultSet rSet = pStatement.executeQuery();
+            rSet.next();
+            int uId = rSet.getInt("userId");
+            int userType = rSet.getInt("userType");
+            String uName = rSet.getString("userName");
+            String userPassword = rSet.getString("userPassword");
+            String fname = rSet.getString("fname");
+            String lname = rSet.getString("lname");
+            int manager = rSet.getInt("manager");
+
+            foundUser = new User(uId, userType, uName, userPassword, fname, lname, manager);
         } 
         catch (SQLException e) {
             e.printStackTrace();

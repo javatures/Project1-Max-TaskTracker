@@ -20,10 +20,21 @@ public class User
         this.manager = manager;
     }
 
+    public User(String userName, String userPassword)
+    {
+        this.userName = userName;
+        this.userPassword = userPassword;
+    }
+
     public User(int userType, String userName, String userPassword) {
         this.userType = userType;
         this.userName = userName;
         this.userPassword = userPassword;
+    }
+
+    public User()
+    {
+
     }
 
     public int getUserId() {
