@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TaskDao 
 {
@@ -35,5 +37,60 @@ public class TaskDao
         }
     }
 
-    
+    public Map<Integer, Task> getAllAssignedTasks(int userId)
+    {
+        Map<Integer, Task> tasks = new HashMap<>();
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM tasks WHERE reciever = ?;");
+            pStatement.setInt(1, userId);
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next())
+            {
+                int taskId = rSet.getInt("taskId");
+                int assigner = rSet.getInt("assigner");
+                int reciever = rSet.getInt("reciever");
+                String title = rSet.getString("title");
+                String body = rSet.getString("body");
+                int currentStatus = rSet.getInt("currentStatus");
+                String evidenceLocation = rSet.getString("evidenceLocation");
+
+                tasks.put(taskId, new Task(taskId, assigner, reciever, title, body, currentStatus, evidenceLocation));
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tasks;
+    }
+
+    public Map<Integer, Task> getAll()
+    {
+        Map<Integer, Task> tasks = new HashMap<>();
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM tasks;");
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next())
+            {
+                int taskId = rSet.getInt("taskId");
+                int assigner = rSet.getInt("assigner");
+                int reciever = rSet.getInt("reciever");
+                String title = rSet.getString("title");
+                String body = rSet.getString("body");
+                int currentStatus = rSet.getInt("currentStatus");
+                String evidenceLocation = rSet.getString("evidenceLocation");
+
+                tasks.put(taskId, new Task(taskId, assigner, reciever, title, body, currentStatus, evidenceLocation));
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tasks;
+    }
 }

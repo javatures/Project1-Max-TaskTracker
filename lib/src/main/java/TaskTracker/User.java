@@ -19,6 +19,7 @@ public class User
         this.lname = lname;
         this.manager = manager;
     }
+    
 
     public User(String userName, String userPassword)
     {
@@ -90,6 +91,16 @@ public class User
     }
 
     public void setManager(int manager) {
+        this.manager = manager;
+    }
+
+
+    public User(int userType, String userName, String userPassword, String fname, String lname, int manager) {
+        this.userType = userType;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.fname = fname;
+        this.lname = lname;
         this.manager = manager;
     }
 }

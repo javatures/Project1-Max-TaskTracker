@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserDao 
 {
@@ -155,5 +157,33 @@ public class UserDao
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Map<Integer, User> getAll()
+    {
+        Map<Integer, User> users = new HashMap<>();
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM users;");
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next())
+            {
+                int uId = rSet.getInt("userId");
+                int userType = rSet.getInt("userType");
+                String uName = rSet.getString("userName");
+                String userPassword = rSet.getString("userPassword");
+                String fname = rSet.getString("fname");
+                String lname = rSet.getString("lname");
+                int manager = rSet.getInt("manager");
+
+                users.put(uId, new User(uId, userType, uName, userPassword, fname, lname, manager));
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 }

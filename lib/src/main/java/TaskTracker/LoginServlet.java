@@ -8,15 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
-public class Login extends HttpServlet
+public class LoginServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
     private UserDao uDao = new UserDao();
-    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -32,8 +30,9 @@ public class Login extends HttpServlet
 
         if(attempedUserLogin != null)
         {
-            resp.getWriter().println("success");
-            resp.addHeader("currentUser", mapper.writeValueAsString(attempedUserLogin));
+            HttpSession session = req.getSession();  
+            session.setAttribute("currentUser",attempedUserLogin); 
+            resp.sendRedirect(req.getContextPath() + "/homepage");
         }
         else{
             doGet(req, resp);
