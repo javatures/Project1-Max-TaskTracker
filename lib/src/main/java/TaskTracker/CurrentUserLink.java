@@ -1,8 +1,8 @@
 package TaskTracker;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -10,11 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/homepage")
-public class HomepageServlet extends HttpServlet
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@WebServlet("/currentuser")
+public class CurrentUserLink extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+    private ObjectMapper mapper = new ObjectMapper();
     private UserDao uDao = new UserDao();
+
+    private void sendAsJson(HttpServletResponse response, Object obj) throws IOException {
+		
+		response.setContentType("application/json");
+		
+		String res = mapper.writeValueAsString(obj);
+		     
+		PrintWriter out = response.getWriter();
+		  
+		out.print(res);
+		out.flush();
+	}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -28,22 +43,7 @@ public class HomepageServlet extends HttpServlet
             }
         }
         User currentUser = uDao.findUserById(currentUserId);
-
-        if(currentUser.getUserType() == 1)
-        {
-            RequestDispatcher view = req.getRequestDispatcher("managerHomepage.html");
-            view.forward(req, resp);
-        }
-        else if(currentUser.getUserType() == 2)
-        {
-            RequestDispatcher view = req.getRequestDispatcher("employeeHomepage.html");
-            view.forward(req, resp);
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-    {
-
+        sendAsJson(resp, currentUser);
+        return;
     }
 }

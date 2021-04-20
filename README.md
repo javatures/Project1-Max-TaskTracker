@@ -4,9 +4,9 @@ A web application for managing tasks given to employees by managers.
 
 # User Stories
 - An employee...
-    - [] can login
+    - [X] can login
     - [] can logout
-    - [] can view the employee homepage
+    - [X] can view the employee homepage
     - [] can view their assigned tasks
     - [] can submit a request for a manager to verify work done
     - [] can upload an image as proof of their work
@@ -15,9 +15,9 @@ A web application for managing tasks given to employees by managers.
     - [] can update their account info
     - [] can be notified of a rejection of their submitted tasks
 - A mananger...
-    - [] can login
+    - [X] can login
     - [] can logout
-    - [] can view the manager homepage
+    - [X] can view the manager homepage
     - [] can view all pending requests for sign off from employees assigned to them
     - [] can sign off on work
     - [] can deny work

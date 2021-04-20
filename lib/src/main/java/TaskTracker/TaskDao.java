@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TaskDao 
@@ -37,9 +39,48 @@ public class TaskDao
         }
     }
 
-    public Map<Integer, Task> getAllAssignedTasks(int userId)
+    /**
+     * For managers to get all the tasks they have assigned
+     * @param userId
+     * @return
+     */
+    public List<Task> getAllAssignedTasks(int userId)
     {
-        Map<Integer, Task> tasks = new HashMap<>();
+        List<Task> tasks = new ArrayList<>();
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM tasks WHERE assigner = ?;");
+            pStatement.setInt(1, userId);
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next())
+            {
+                int taskId = rSet.getInt("taskId");
+                int assigner = rSet.getInt("assigner");
+                int reciever = rSet.getInt("reciever");
+                String title = rSet.getString("title");
+                String body = rSet.getString("body");
+                int currentStatus = rSet.getInt("currentStatus");
+                String evidenceLocation = rSet.getString("evidenceLocation");
+
+                tasks.add(new Task(taskId, assigner, reciever, title, body, currentStatus, evidenceLocation));
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tasks;
+    }
+
+    /**
+     * For employees to get all tasks they have recieved
+     * @param userId
+     * @return
+     */
+    public List<Task> getAllRecievedTasks(int userId)
+    {
+        List<Task> tasks = new ArrayList<>();
         try 
         {
             PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM tasks WHERE reciever = ?;");
@@ -56,7 +97,7 @@ public class TaskDao
                 int currentStatus = rSet.getInt("currentStatus");
                 String evidenceLocation = rSet.getString("evidenceLocation");
 
-                tasks.put(taskId, new Task(taskId, assigner, reciever, title, body, currentStatus, evidenceLocation));
+                tasks.add(new Task(taskId, assigner, reciever, title, body, currentStatus, evidenceLocation));
             }
         } 
         catch (SQLException e) {

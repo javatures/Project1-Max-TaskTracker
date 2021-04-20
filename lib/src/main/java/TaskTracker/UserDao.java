@@ -186,4 +186,33 @@ public class UserDao
 
         return users;
     }
+
+    public Map<Integer, User> getAllOfUserType(int uType)
+    {
+        Map<Integer, User> users = new HashMap<>();
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM users WHERE userType = ?;");
+            pStatement.setInt(1, uType);
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next())
+            {
+                int uId = rSet.getInt("userId");
+                int userType = rSet.getInt("userType");
+                String uName = rSet.getString("userName");
+                String userPassword = rSet.getString("userPassword");
+                String fname = rSet.getString("fname");
+                String lname = rSet.getString("lname");
+                int manager = rSet.getInt("manager");
+
+                users.put(uId, new User(uId, userType, uName, userPassword, fname, lname, manager));
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
 }

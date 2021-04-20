@@ -1,0 +1,43 @@
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h1.title {
+    font-family: 'Rubik', sans-serif;
+    font-size: 5.5em;
+}
+
+.slogan {
+    font-size: 20px;
+    color: #4F4F4F;
+}
+
+.card {
+    box-shadow: 3px 3px 5px #C7C7C7;
+    border: 1px #C7C7C7;
+}
+
+.card-body {
+    border: 1px #C7C7C7;
+}
+
+.card-header {
+    background-color: #E6E6E6;
+    font-size: 16px;
+    color: #6B6B6B;
+}
+
+.text-danger {
+    color: #CC4545;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+.loginIcons {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
