@@ -2,6 +2,7 @@ package TaskTracker;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +30,17 @@ public class HomepageServlet extends HttpServlet
         return uDao.findUserById(currentUserId);
     }
 
+    private void deleteCookie(HttpServletRequest req, String cookieName)
+    {
+        for(Cookie i : req.getCookies())
+        {
+            if(i.getName().equals(cookieName))
+            {
+                i.setMaxAge(0);
+            }
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
     {
@@ -47,6 +59,24 @@ public class HomepageServlet extends HttpServlet
         {
             req.getRequestDispatcher("employeeHomepage.html").include(req, resp);
             out.close();
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String logout = req.getParameter("logout");
+
+        if(logout.equals("true"))
+        {
+            ArrayList<String> cookiesToKill = new ArrayList<>();
+            cookiesToKill.add("currentUser");
+            cookiesToKill.add("reciever");
+
+            for(String cookieName : cookiesToKill)
+            {
+                deleteCookie(req, cookieName);
+            }
+            resp.sendRedirect(req.getContextPath() + "/login");
         }
     }
 }
