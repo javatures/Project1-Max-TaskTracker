@@ -66,17 +66,29 @@ public class HomepageServlet extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String logout = req.getParameter("logout");
 
-        if(logout.equals("true"))
+        if(logout != null && logout.equals("true"))
         {
             ArrayList<String> cookiesToKill = new ArrayList<>();
             cookiesToKill.add("currentUser");
             cookiesToKill.add("reciever");
+            cookiesToKill.add("submitForApproval");
 
             for(String cookieName : cookiesToKill)
             {
                 deleteCookie(req, cookieName);
             }
             resp.sendRedirect(req.getContextPath() + "/login");
+        }
+
+        //section for employee submit for approval
+        String taskId = req.getParameter("submitForApproval");
+
+        if(taskId != null)
+        {
+            Cookie idOfSubmission = new Cookie("idOfSubmission", taskId);
+            resp.addCookie(idOfSubmission);
+
+            resp.sendRedirect(req.getContextPath() + "/submitForApproval");
         }
     }
 }

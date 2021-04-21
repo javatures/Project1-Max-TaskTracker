@@ -134,4 +134,19 @@ public class TaskDao
 
         return tasks;
     }
+
+    public void changeStatus(int taskId, int status)
+    {
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("UPDATE tasks SET currentStatus = ? WHERE taskId = ?");
+            pStatement.setInt(1, status);
+            pStatement.setInt(2, taskId);
+
+            pStatement.executeUpdate();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
