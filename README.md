@@ -7,7 +7,7 @@ A web application for managing tasks given to employees by managers.
     - [X] can login
     - [] can logout
     - [X] can view the employee homepage
-    - [] can view their assigned tasks
+    - [X] can view their assigned tasks
     - [] can submit a request for a manager to verify work done
     - [] can upload an image as proof of their work
     - [] can view past completed work
@@ -18,9 +18,10 @@ A web application for managing tasks given to employees by managers.
     - [X] can login
     - [] can logout
     - [X] can view the manager homepage
-    - [] can view all pending requests for sign off from employees assigned to them
+    - [X] can view all pending requests for sign off from employees assigned to them
     - [] can sign off on work
     - [] can deny work
+    - [X] can create new tasks for their employees
     - [] can view any submitted images of work
-    - [] can view all assigned employees
+    - [X] can view all assigned employees
     - [] can view history of an employee
