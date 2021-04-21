@@ -49,7 +49,7 @@ public class TaskDao
         List<Task> tasks = new ArrayList<>();
         try 
         {
-            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM tasks WHERE assigner = ?;");
+            PreparedStatement pStatement = connection.prepareStatement("SELECT * FROM tasks LEFT JOIN users ON tasks.assigner = users.userId WHERE assigner = ?;");
             pStatement.setInt(1, userId);
             ResultSet rSet = pStatement.executeQuery();
 

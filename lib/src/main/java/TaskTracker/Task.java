@@ -7,6 +7,7 @@ public class Task
     private int reciever;
     private String title;
     private String body;
+    //Status: 1=need to be done, 2=submitted, 3=approval, 4=denied
     private int currentStatus;
     private String evidenceLocation;
 

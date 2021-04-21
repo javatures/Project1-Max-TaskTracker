@@ -9,7 +9,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/newAccount")
 public class AccountCreationServlet extends HttpServlet
@@ -28,12 +27,9 @@ public class AccountCreationServlet extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
     {
         User attempedUserCreation = new User(Integer.parseInt(req.getParameter("userType")), req.getParameter("username"), req.getParameter("password"), req.getParameter("fname"), req.getParameter("lname"), Integer.parseInt(req.getParameter("manager")));
-        uDao.insert(attempedUserCreation);
+        uDao.insert(attempedUserCreation);  
 
-        HttpSession session=req.getSession();  
-        session.setAttribute("currentUser",attempedUserCreation);  
-
-        Cookie cookie = new Cookie("currentUserId", ""+attempedUserCreation.getUserId());
+        Cookie cookie = new Cookie("currentUser", ""+attempedUserCreation.getUserId());
         resp.addCookie(cookie);
 
         resp.sendRedirect(req.getContextPath() + "/homepage");
