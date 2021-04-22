@@ -48,11 +48,16 @@ public class SubmitForApproval extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+    {
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+
+        out.println("<p></p>");
         int taskId = getTaskId(req);
 
         List<Part> parts = req.getParts().stream().filter(part -> part.getSubmittedFileName() != null && part.getName().equals("file")).collect(Collectors.toList());
-        if(parts.get(0) != null)
+        if(!parts.get(0).getSubmittedFileName().equals(""))
         {
             String fileName = parts.get(0).getSubmittedFileName();
 

@@ -10,7 +10,7 @@ A web application for managing tasks given to employees by managers.
     - [X] can view their assigned tasks
     - [X] can submit a request for a manager to verify work done
     - [X] can upload an image as proof of their work
-    - [] can view past completed work
+    - [X] can view past completed work
     - [] can view their account info
     - [] can update their account info
     - [] can be notified of a rejection of their submitted tasks
@@ -24,7 +24,7 @@ A web application for managing tasks given to employees by managers.
     - [X] can create new tasks for their employees
     - [X] can view any submitted images of work
     - [X] can view all assigned employees
-    - [] can view history of an employee
+    - [X] can view history of an employee
 
 ### Tools & APIs
 - [X] Agile User Stories
