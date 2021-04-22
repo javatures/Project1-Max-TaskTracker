@@ -149,4 +149,19 @@ public class TaskDao
             e.printStackTrace();
         }
     }
+
+    public void uploadEvidence(int taskId, String filePath)
+    {
+        try 
+        {
+            PreparedStatement pStatement = connection.prepareStatement("UPDATE tasks SET evidenceLocation = ? WHERE taskId = ?");
+            pStatement.setString(1, filePath);
+            pStatement.setInt(2, taskId);
+
+            pStatement.executeUpdate();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

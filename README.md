@@ -9,7 +9,7 @@ A web application for managing tasks given to employees by managers.
     - [X] can view the employee homepage
     - [X] can view their assigned tasks
     - [X] can submit a request for a manager to verify work done
-    - [] can upload an image as proof of their work
+    - [X] can upload an image as proof of their work
     - [] can view past completed work
     - [] can view their account info
     - [] can update their account info
@@ -22,6 +22,51 @@ A web application for managing tasks given to employees by managers.
     - [X] can sign off on work
     - [X] can deny work
     - [X] can create new tasks for their employees
-    - [] can view any submitted images of work
+    - [X] can view any submitted images of work
     - [X] can view all assigned employees
     - [] can view history of an employee
+
+### Tools & APIs
+- [X] Agile User Stories
+- [X] Java SE 8
+- [X] Gradle
+- [X] JDBC
+- [X] PostgreSQL
+- [X] JavaEE Servlet
+- [X] HTML/JS/CSS
+- [X] AJAX/Fetch
+- [] JUnit
+- [X] log4j or similar
+- [] Jest or similar JS testing framework
+- [] Optional:
+    - [X] Docker, Docker-Compose
+    - [] React
+    - [X] Bootstrap
+    - [] Remote hosting (AWS EC2/RDS)
+    - [] Jenkins CI automation
+    - [] Mockito
+
+### Architecture
+- [] Anemic/DDD OR n-tier package & class structure
+- [] Design Patterns:
+    - [] Dependency Injection
+    - [X] Data Access Object
+    - [] Business Delegate
+    - [X] Model-View-Controller
+    - [] Front Controller
+- [X] SQL Normalization (3rd form)
+- [] PL/pgSQL
+- [] Optional:
+    - [] Single Page Application
+
+### Functionality
+- [X] CRUD - Create, Read, Update, Delete
+- [X] Web App dashboard interface
+- [X] Asynchronous interface updates
+- [X] Login - Authentication & Authorization
+- [] Database persistance
+- [X] Session management
+
+### Presentation
+- [] Prepare a demonstration of functionality requirements through a browser
+- [] Prepare visual aides (slides) introducing the project requirements and features
