@@ -14,7 +14,7 @@ A web application for managing tasks given to employees by managers.
     - [X] can view their account info
     - [X] can update their account info
     - [] can be notified of a rejection of their submitted tasks
-- A mananger...
+- A manager...
     - [X] can login
     - [X] can logout
     - [X] can view the manager homepage
