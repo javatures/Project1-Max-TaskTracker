@@ -127,30 +127,17 @@ public class UserDao
         return foundUser;
     }
 
-    public void updateFname(User user)
+    public void updateUser(User user)
     {
         try 
         {
-            PreparedStatement pStatement = connection.prepareStatement("update users set fname = ? where userId = ?;");
+            PreparedStatement pStatement = connection.prepareStatement("update users set userName = ?, userPassword = ?, fname = ?, lname = ? where userId = ?;");
 
-            pStatement.setString(1, user.getFname());
-            pStatement.setInt(2, user.getUserId());
-
-            pStatement.executeUpdate();
-        } 
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateLname(User user)
-    {
-        try 
-        {
-            PreparedStatement pStatement = connection.prepareStatement("update users set lname = ? where userId = ?;");
-
-            pStatement.setString(1, user.getLname());
-            pStatement.setInt(2, user.getUserId());
+            pStatement.setString(1, user.getUserName());
+            pStatement.setString(2, user.getUserPassword());
+            pStatement.setString(3, user.getFname());
+            pStatement.setString(4, user.getLname());
+            pStatement.setInt(5, user.getUserId());
 
             pStatement.executeUpdate();
         } 

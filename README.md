@@ -11,8 +11,8 @@ A web application for managing tasks given to employees by managers.
     - [X] can submit a request for a manager to verify work done
     - [X] can upload an image as proof of their work
     - [X] can view past completed work
-    - [] can view their account info
-    - [] can update their account info
+    - [X] can view their account info
+    - [X] can update their account info
     - [] can be notified of a rejection of their submitted tasks
 - A mananger...
     - [X] can login

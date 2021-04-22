@@ -27,6 +27,6 @@ tasks.named('test') {
 }
 
 gretty {
-    httpPort = 8092
+    httpPort = 8080
     contextPath = '/TaskTracker'
 }
