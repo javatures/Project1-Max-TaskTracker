@@ -1,8 +1,24 @@
-# Project 1: Task Manager
+# TaskTracker
+
+## Project Description
 
 A web application for managing tasks given to employees by managers.
 
-# User Stories
+## Technologies Used
+
+* Gradle
+* Gretty
+* Jackson
+* Java Servlet API
+* PostgreSQL
+* Bootstrap 4
+* Log4j2 API
+* Singleton Design Pattern
+* RESTful API Design
+* Docker
+
+## Features
+
 - An employee...
     - [X] can login
     - [X] can logout
@@ -13,7 +29,7 @@ A web application for managing tasks given to employees by managers.
     - [X] can view past completed work
     - [X] can view their account info
     - [X] can update their account info
-    - [] can be notified of a rejection of their submitted tasks
+
 - A manager...
     - [X] can login
     - [X] can logout
@@ -26,47 +42,20 @@ A web application for managing tasks given to employees by managers.
     - [X] can view all assigned employees
     - [X] can view history of an employee
 
-### Tools & APIs
-- [X] Agile User Stories
-- [X] Java SE 8
-- [X] Gradle
-- [X] JDBC
-- [X] PostgreSQL
-- [X] JavaEE Servlet
-- [X] HTML/JS/CSS
-- [X] AJAX/Fetch
-- [] JUnit
-- [X] log4j or similar
-- [] Jest or similar JS testing framework
-- [] Optional:
-    - [X] Docker, Docker-Compose
-    - [] React
-    - [X] Bootstrap
-    - [] Remote hosting (AWS EC2/RDS)
-    - [] Jenkins CI automation
-    - [] Mockito
+## Getting Started / Usage
+   
+In order to see this project working correctly you will need to do the following:
 
-### Architecture
-- [] Anemic/DDD OR n-tier package & class structure
-- [] Design Patterns:
-    - [] Dependency Injection
-    - [X] Data Access Object
-    - [] Business Delegate
-    - [X] Model-View-Controller
-    - [] Front Controller
-- [X] SQL Normalization (3rd form)
-- [] PL/pgSQL
-- [] Optional:
-    - [] Single Page Application
+1) Have Java 8 runtime environment installed
+2) Have Docker installed
 
-### Functionality
-- [X] CRUD - Create, Read, Update, Delete
-- [X] Web App dashboard interface
-- [X] Asynchronous interface updates
-- [X] Login - Authentication & Authorization
-- [] Database persistance
-- [X] Session management
+Once you have both of these installed you can clone this repo by using this command:
 
-### Presentation
-- [] Prepare a demonstration of functionality requirements through a browser
-- [] Prepare visual aides (slides) introducing the project requirements and features
+    git clone https://github.com/javatures/Project1-Max-TaskTracker.git
+
+You will also need to create a Docker image and run it on a container, to do this run these commands:
+
+    docker build -t project1
+    docker run -d -p 5432:5432 project1
+
+Once these are accomplished, the web application should be viewable at http://localhost:8080/TaskManager
